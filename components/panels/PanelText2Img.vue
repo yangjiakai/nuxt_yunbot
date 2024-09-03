@@ -2,6 +2,7 @@
 import { useFakeProgress } from "@/hooks/useFakeProgress";
 import useWebsocket from "@/hooks/useWebSocket";
 import { useImageAiStore } from "@/stores/imageAi";
+import { generateRandomSeed } from "@/utils/common";
 
 const imageAiStore = useImageAiStore();
 const websocketUrl =
@@ -185,7 +186,7 @@ const sendMessage = () => {
   const message = {
     type: "flux-txt2img",
     prompt: {
-      seed: "12345678888",
+      seed: "12345678899",
       batch_size: batchSize.value,
       positive: fullPrompt.value,
     },
@@ -209,6 +210,83 @@ const handleCreate = async () => {
   } finally {
   }
 };
+
+const config = useRuntimeConfig();
+
+const POLL_INTERVAL = 5000; // 5秒
+const MAX_POLL_TIME = 90000; // 50秒
+
+const sendMessage2 = async () => {
+  isCreating.value = true;
+  imageAiStore.imgCreatingDialog = true;
+  startProgress(); // 假设这个函数存在
+
+  const message = {
+    type: "flux-txt2img",
+    client_id: "32324324224",
+    prompt: {
+      seed: generateRandomSeed(),
+      batch_size: batchSize.value,
+      positive: fullPrompt.value,
+    },
+  };
+
+  try {
+    // 发送初始请求
+    const { data: initialData } = await useFetch("/api/v1/AIGC/prompt", {
+      baseURL: config.public.baseUrl1,
+      method: "POST",
+      body: message,
+    });
+
+    if (!initialData.value || !initialData.value.task_id) {
+      throw new Error("No task ID returned");
+    }
+
+    const taskId = initialData.value.task_id;
+    let pollCount = 0;
+    const maxPollCount = MAX_POLL_TIME / POLL_INTERVAL;
+
+    // 开始轮询
+    const pollInterval = setInterval(async () => {
+      pollCount++;
+
+      if (pollCount > maxPollCount) {
+        clearInterval(pollInterval);
+        throw new Error("Polling timeout: Task took too long to complete");
+      }
+
+      const { data: pollData } = await useFetch("/api/v1/AIGC/task", {
+        baseURL: config.public.baseUrl1,
+        params: { task_id: taskId },
+      });
+
+      if (pollData.value && pollData.value.status === "created_image") {
+        clearInterval(pollInterval);
+
+        imageAiStore.creations = pollData.value.images;
+        imageAiStore.historys.unshift(...pollData.value.images);
+        imageAiStore.currentCreationImage = pollData.value.images[0];
+
+        isCreating.value = false;
+        imageAiStore.imgCreatingDialog = false;
+        endProgress(); // 假设这个函数存在
+      }
+    }, POLL_INTERVAL);
+  } catch (error) {
+    console.error("Error:", error);
+    handleError(error);
+  }
+};
+
+const handleError = (error: any) => {
+  isCreating.value = false;
+  imageAiStore.imgCreatingDialog = false;
+  endProgress(); // 假设这个函数存在
+
+  // 这里可以添加错误提示逻辑，例如：
+  alert(`An error occurred: ${error.message}`);
+};
 </script>
 
 <template>
@@ -220,7 +298,7 @@ const handleCreate = async () => {
         size="large"
         block
         :disabled="isCreating"
-        @click="handleCreate"
+        @click="sendMessage2"
         >图像生成</v-btn
       >
     </div>

@@ -43,4 +43,11 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ["defineStore", "acceptHMRUpdate"],
   } as any,
+
+  runtimeConfig: {
+    public: {
+      baseUrl1: "https://api.yunrobot.cn",
+      baseUrl2: "https://api2.example.com",
+    },
+  },
 });
