@@ -1,5 +1,5 @@
 <template>
-  <div v-perfect-scrollbar>
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

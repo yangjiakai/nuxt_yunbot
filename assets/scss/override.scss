@@ -37,3 +37,28 @@ html {
 body {
   font-family: 'Quicksand', sans-serif !important;
 }
+
+.v-expansion-panel {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 4px 8px,
+    rgba(155, 155, 155, 0.1) -1px -1px 1px 1px !important;
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
+
+  color: white;
+
+  .v-expansion-panel-header {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+
+    .v-expansion-panel-header__icon {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .v-expansion-panel-content {
+    padding: 0 10px;
+  }
+}

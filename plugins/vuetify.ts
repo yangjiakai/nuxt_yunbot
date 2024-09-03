@@ -126,6 +126,7 @@ export default defineNuxtPlugin((app) => {
       // VTextField: { ... },
     },
     theme: {
+      defaultTheme: "dark",
       themes: {
         light,
         dark,
