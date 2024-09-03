@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { useAuthStore } from "@/stores/auth";
+
 import { useAppStore } from "@/stores/app";
 import {
   validateEmail,
@@ -9,7 +9,6 @@ import {
 } from "@/utils/validation";
 
 const appStore = useAppStore();
-const authStore = useAuthStore();
 
 interface FormData {
   username: string;
@@ -57,7 +56,7 @@ async function getCode() {
 
   isGettingCode.value = true;
   try {
-    await authStore.getVerificationCode(form.value.email);
+    // await authStore.getVerificationCode(form.value.email);
     showError("验证码已发送到您的邮箱，请查收");
   } catch (error) {
     showError("获取验证码失败，请稍后重试");
@@ -95,12 +94,12 @@ async function handleSubmit() {
 
   isSubmitting.value = true;
   try {
-    await authStore.register({
-      username: form.value.username,
-      password: form.value.password,
-      user_email: form.value.email,
-      verification_Code: form.value.verificationCode,
-    });
+    // await authStore.register({
+    //   username: form.value.username,
+    //   password: form.value.password,
+    //   user_email: form.value.email,
+    //   verification_Code: form.value.verificationCode,
+    // });
     showError("注册成功");
     // 注册成功后的逻辑，比如跳转到登录页面
   } catch (error) {

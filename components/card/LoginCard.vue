@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue";
-import { useAuthStore } from "@/stores/auth";
 import { useAppStore } from "@/stores/app";
 import { validateEmail } from "@/utils/validation";
 
 const appStore = useAppStore();
-const authStore = useAuthStore();
 
 interface FormData {
   email: string;
@@ -49,10 +46,10 @@ async function handleLogin() {
 
   isSubmitting.value = true;
   try {
-    await authStore.login({
-      email: form.value.email,
-      password: form.value.password,
-    });
+    // await authStore.login({
+    //   email: form.value.email,
+    //   password: form.value.password,
+    // });
     showError("登录成功");
     // 登录成功后的逻辑，比如跳转到首页
   } catch (error) {

@@ -8,6 +8,7 @@ import ImgPreview from "~/components/dialog/ImgPreview.vue";
 import AppBar from "~/components/layout/AppBar.vue";
 import ImgCreating from "~/components/dialog/ImgCreating.vue";
 import HistorySidebar from "~/components/ai-image/HistorySidebar.vue";
+import AuthDialog from "~/components/dialog/AuthDialog.vue";
 import { useAppStore } from "@/stores/app";
 const appStore = useAppStore();
 const back = computed(() => appStore.currentBackground);
@@ -20,6 +21,7 @@ const back = computed(() => appStore.currentBackground);
     <HistorySidebar />
     <ImgPreview />
     <ImgCreating />
+    <AuthDialog />
     <v-main>
       <div class="image-board pa-2">
         <v-card class="fill-height glassmorphism" color="rgba(40,40,40,.5) ">

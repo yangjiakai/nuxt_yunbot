@@ -5,8 +5,8 @@
 -->
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
-import LoginCard from "./LoginCard.vue";
-import RegisterCard from "./RegisterCard.vue";
+import LoginCard from "~/components/card/LoginCard.vue";
+import RegisterCard from "~/components/card/RegisterCard.vue";
 const appStore = useAppStore();
 </script>
 
