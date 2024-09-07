@@ -5,7 +5,16 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-
+import { createVueI18nAdapter } from "vuetify/locale/adapters/vue-i18n";
+import { createI18n, useI18n } from "vue-i18n";
+import messages from "@/locales/messages";
+const i18n = createI18n({
+  legacy: false,
+  locale: "en",
+  messages: messages,
+  silentTranslationWarn: true,
+  silentFallbackWarn: true,
+});
 const light = {
   dark: false,
   colors: {
@@ -132,8 +141,12 @@ export default defineNuxtPlugin((app) => {
         dark,
       },
     },
+    locale: {
+      adapter: createVueI18nAdapter({ i18n, useI18n }),
+    },
   });
   app.vueApp.use(vuetify);
   // @ts-ignore
   app.vueApp.use(VueKonva);
+  app.vueApp.use(i18n);
 });

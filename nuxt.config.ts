@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "nuxt-lodash",
     "@vueuse/nuxt",
+    "@nuxtjs/i18n",
   ],
 
   vite: {
