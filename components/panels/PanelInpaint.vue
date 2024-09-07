@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useImageAiStore } from "@/stores/imageAi";
-const imageAiStore = useImageAiStore();
-
+import { useTaskStore } from "@/stores/taskStore";
 import ImgUploader from "@/components/common/ImgUploader2.vue";
-
+const taskStore = useTaskStore();
+const imageAiStore = useImageAiStore();
 const panel = ref([
   "baseImgPanel",
   "refImgPanel",
@@ -11,11 +11,6 @@ const panel = ref([
   "promptPanel",
 ]);
 const prompt = ref("A beautiful girl, HD，Chinese portrait");
-
-const isCreating = ref<boolean>(false);
-
-const batchSize = ref(1);
-const aspectRatio = ref("1:1");
 
 const removePrefix = (base64String: string) => {
   return base64String.split(",")[1];
@@ -25,11 +20,7 @@ const removePrefix = (base64String: string) => {
    创建任务
 ------------------------------- */
 
-const handleCreate = async () => {};
-
-const maskImgSrc = ref("https://thitbo.vivusea.com/upload/images/noimg.jpg");
 const baseImage = ref("");
-const baseImageFile = ref();
 
 const handleBase64Update = (base64: string) => {
   baseImage.value = base64;
@@ -37,8 +28,6 @@ const handleBase64Update = (base64: string) => {
 };
 
 const handleImageFileUpdate = (file: File) => {
-  console.log("handleImageFileUpdate", file);
-
   imageAiStore.setBaseImageFile(file);
 };
 
@@ -46,17 +35,29 @@ const refImg = ref("https://thitbo.vivusea.com/upload/images/noimg.jpg");
 const handleRefImgUpdate = (base64: string) => {
   refImg.value = base64;
 };
+
+const handleCreate = () => {
+  createTask({
+    type: "cat_vton",
+    client_id: "32324324224",
+    prompt: {
+      model_img: removePrefix(imageAiStore.baseImage),
+      mask_img: removePrefix(imageAiStore.maskSrc),
+      clothes_img: removePrefix(refImg.value),
+    },
+  });
+};
 </script>
 
 <template>
   <div>
     <div class="px-2 pt-2">
       <v-btn
-        class="gradient info text-gray-50"
+        class="gradient info text-gray-50 my-2"
         color="primary"
         size="large"
         block
-        :disabled="isCreating"
+        :disabled="taskStore.isLoading"
         @click="handleCreate"
         >图像生成</v-btn
       >

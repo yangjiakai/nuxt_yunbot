@@ -10,7 +10,7 @@ import PanelGenerate from "@/components/panels/PanelGenerate.vue";
 import PanelDeafault from "@/components/panels/PanelDeafault.vue";
 import PanelText2Img from "@/components/panels/PanelText2Img.vue";
 import PanelImageGeneration from "@/components/panels/PanelImageGeneration.vue";
-// import PanelInpaint from "@/components/panels/PanelInpaint.vue";
+import PanelInpaint from "@/components/panels/PanelInpaint.vue";
 import PanelEdit from "@/components/panels/PanelEdit.vue";
 import PanelDesign from "@/components/panels/PanelDesign.vue";
 const router = useRouter();
