@@ -31,6 +31,12 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    build: {
+      target: ["es2020"],
+    },
+    optimizeDeps: {
+      exclude: ["onnxruntime-web"],
+    },
   },
 
   postcss: {
@@ -55,5 +61,19 @@ export default defineNuxtConfig({
     head: {
       title: "AIBOX",
     },
+  },
+  nitro: {
+    experimental: {
+      wasm: true,
+    },
+    routeRules: {
+      "/**/*.wasm": { headers: { "Content-Type": "application/wasm" } },
+    },
+    publicAssets: [
+      {
+        baseURL: "node_modules/onnxruntime-web/dist/",
+        dir: "public",
+      },
+    ],
   },
 });

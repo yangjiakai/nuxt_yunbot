@@ -1,6 +1,6 @@
 // import this after install `@mdi/font` package
 import "@mdi/font/css/materialdesignicons.css";
-
+import VueKonva from "vue-konva";
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
@@ -134,4 +134,6 @@ export default defineNuxtPlugin((app) => {
     },
   });
   app.vueApp.use(vuetify);
+  // @ts-ignore
+  app.vueApp.use(VueKonva);
 });

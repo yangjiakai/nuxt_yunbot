@@ -137,7 +137,7 @@ const isCurrentStyle = (style: any) => {
 const batchSize = ref(1);
 const aspectRatio = ref("1:1");
 
-const createTaskHandler = () => {
+const handleCreate = () => {
   createTask({
     type: "flux-txt2img",
     client_id: "32324324224",
@@ -159,7 +159,7 @@ const createTaskHandler = () => {
         size="large"
         block
         :disabled="taskStore.isLoading"
-        @click="createTaskHandler"
+        @click="handleCreate"
         >图像生成</v-btn
       >
     </div>

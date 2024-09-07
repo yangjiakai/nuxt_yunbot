@@ -1,36 +1,8 @@
 <script setup lang="ts">
-import useWebsocket from "@/composable/useWebSocket";
 import { useImageAiStore } from "@/stores/imageAi";
-import ImgUploader from "@/components/common/ImgUploader2.vue";
-import SamApp from "@/components/sam/SamApp.vue";
 const imageAiStore = useImageAiStore();
 
-const websocketUrl =
-  "wss://api.yunrobot.cn/api/v1/AIGC/ws?client_id=648683-3-4957-b27f-ae86a68875884";
-// 定义一个响应式变量来存储接收到的消息
-// 定义收到消息时的回调函数
-const onMessage = (message: any) => {
-  switch (message.type) {
-    case "created_image":
-      imageAiStore.creations = message.data.images;
-      imageAiStore.historys.unshift(...message.data.images);
-      // imageAiStore.currentIndex = 0;
-      imageAiStore.currentCreationImage = message.data.images[0];
-      break;
-    case "end":
-      isCreating.value = false;
-      imageAiStore.imgCreatingDialog = false;
-      break;
-    default:
-      break;
-  }
-};
-
-// 使用WebSocket Hook
-const { sendMessage: sendWebSocketMessage } = useWebsocket(
-  websocketUrl,
-  onMessage
-);
+import ImgUploader from "@/components/common/ImgUploader2.vue";
 
 const panel = ref([
   "baseImgPanel",
@@ -49,41 +21,11 @@ const removePrefix = (base64String: string) => {
   return base64String.split(",")[1];
 };
 
-// 定义发送消息的函数
-const sendMessage = () => {
-  const message = {
-    type: "cat_vton",
-    prompt: {
-      model_img: removePrefix(imageAiStore.baseImage),
-      mask_img: removePrefix(imageAiStore.maskSrc),
-      clothes_img: removePrefix(refImg.value),
-    },
-  };
-  console.log(message);
-
-  sendWebSocketMessage(message);
-};
-
 /* -------------------------------
    创建任务
 ------------------------------- */
 
-const handleCreate = async () => {
-  if (!imageAiStore.baseImage || !imageAiStore.maskSrc) {
-    return;
-  }
-
-  // isCreating.value = true;
-  imageAiStore.imgCreatingDialog = true;
-
-  try {
-    sendMessage();
-  } catch (error: any) {
-    isCreating.value = false;
-    imageAiStore.imgCreatingDialog = false;
-  } finally {
-  }
-};
+const handleCreate = async () => {};
 
 const maskImgSrc = ref("https://thitbo.vivusea.com/upload/images/noimg.jpg");
 const baseImage = ref("");
