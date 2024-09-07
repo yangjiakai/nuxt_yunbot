@@ -6,11 +6,15 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
 import PanelWallPaper from "@/components/panels/PanelWallPaper.vue";
-import PanelImageAi from "@/components/panels/PanelImageAi.vue";
+import PanelGenerate from "@/components/panels/PanelGenerate.vue";
 import PanelDeafault from "@/components/panels/PanelDeafault.vue";
 import PanelText2Img from "@/components/panels/PanelText2Img.vue";
 import PanelImageGeneration from "@/components/panels/PanelImageGeneration.vue";
+// import PanelInpaint from "@/components/panels/PanelInpaint.vue";
+import PanelEdit from "@/components/panels/PanelEdit.vue";
+import PanelDesign from "@/components/panels/PanelDesign.vue";
 const router = useRouter();
+
 const appStore = useAppStore();
 
 const currentPath = computed(() => {
@@ -43,7 +47,6 @@ const toComelCase = (str: string) => {
       >
         <h4 class="text-body-1 font-weight-bold">
           <!-- {{ $t("aiTools." + toComelCase(currentPath)) }} -->
-
           AITOOLS
         </h4>
         <v-btn
@@ -51,9 +54,9 @@ const toComelCase = (str: string) => {
           icon
           class="ml-auto"
           density="compact"
-          v-if="currentPath !== 'ai-image'"
+          v-if="currentPath !== 'generate'"
           size="small"
-          @click="router.push('/ai-image')"
+          @click="router.push('/generate')"
         >
           <v-icon icon="mdi-close"></v-icon>
         </v-btn>
@@ -69,9 +72,12 @@ const toComelCase = (str: string) => {
         <!-- ---------------------------------------------- -->
 
         <PanelWallPaper v-if="currentPath === 'config'" />
-        <PanelImageAi v-else-if="currentPath === 'ai-image'" />
+        <PanelGenerate v-else-if="currentPath === 'generate'" />
         <PanelText2Img v-else-if="currentPath === 'text2img'" />
         <PanelImageGeneration v-else-if="currentPath === 'image-generation'" />
+        <PanelInpaint v-else-if="currentPath === 'inpaint'" />
+        <PanelEdit v-else-if="currentPath === 'edit'" />
+        <PanelDesign v-else-if="currentPath === 'design'" />
         <PanelDeafault v-else />
       </perfect-scrollbar>
     </div>

@@ -33,6 +33,9 @@ export const useImageAiStore = defineStore("ImageAi", {
           "https://cdn.pixabay.com/photo/2023/09/16/20/14/ai-generated-8257503_1280.jpg",
       },
     ],
+    baseImage: "",
+    baseImageFile: null,
+    maskSrc: "https://thitbo.vivusea.com/upload/images/noimg.jpg",
   }),
   persist: [
     {
@@ -57,6 +60,16 @@ export const useImageAiStore = defineStore("ImageAi", {
 
     updateCurrentHistoryImage(image: any): void {
       this.currentHisoryImage = image;
+    },
+    setBaseImage(baseImage: string) {
+      this.baseImage = baseImage;
+    },
+    setMaskSrc(maskSrc: string) {
+      this.maskSrc = maskSrc;
+    },
+
+    setBaseImageFile(baseImageFile: any) {
+      this.baseImageFile = baseImageFile;
     },
   },
 });

@@ -4,21 +4,46 @@
 * @Description: 
 -->
 <script setup lang="ts">
-import { useImageAiStore } from "@/stores/imageAi";
 import { Vue3Lottie } from "vue3-lottie";
-const imageAiStore = useImageAiStore();
+import { useTaskStore } from "~/stores/taskStore";
+
+const taskStore = useTaskStore();
 </script>
 
 <template>
   <v-dialog
-    v-model="imageAiStore.imgCreatingDialog"
+    v-model="taskStore.isLoading"
     width="auto"
     scrim
     class="dialog-bg-blur"
     theme="light"
+    :persistent="true"
   >
     <div
+      v-if="taskStore.errorMessage"
+      class="flex align-center flex-col bg-black/60 rounded-lg pa-5"
+    >
+      <Icon
+        class="text-error"
+        size="50"
+        name="solar:shield-warning-line-duotone"
+      />
+
+      <v-card
+        class="flex align-center justify-center my-5"
+        width="200"
+        :minHeight="100"
+        variant="outlined"
+      >
+        <p class="text-white">{{ taskStore.errorMessage }}</p>
+      </v-card>
+      <v-btn block color="error" @click="taskStore.isLoading = false">
+        OK</v-btn
+      >
+    </div>
+    <div
       class="flex align-center justify-center flex-col bg-black/60 pb-10 rounded-lg"
+      v-else
     >
       <Vue3Lottie
         class="w-1/2 h-1/2"

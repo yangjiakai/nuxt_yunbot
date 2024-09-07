@@ -11,16 +11,25 @@ const appStore = useAppStore();
 
 const mainMenu = ref([
   {
-    text: "首页",
+    text: "Home",
     link: "/",
     icon: "solar:widget-add-bold-duotone",
   },
   {
-    text: "图像",
-    link: "/ai-image",
-    icon: "solar:pallete-2-bold-duotone",
+    text: "Image Generate",
+    link: "/generate",
+    icon: "solar:gallery-add-line-duotone",
   },
-
+  {
+    text: "Image Edit",
+    link: "/edit",
+    icon: "solar:gallery-edit-bold-duotone",
+  },
+  {
+    text: "Design",
+    link: "/design",
+    icon: "solar:paw-bold-duotone",
+  },
   // {
   //   text: "聊天",
   //   link: "/ai-chat",
@@ -56,6 +65,8 @@ const mainMenu = ref([
 ]);
 
 const currentPath = computed(() => {
+  console.log(router.currentRoute.value.path);
+
   return router.currentRoute.value.path;
 });
 
@@ -65,7 +76,6 @@ const getMainMenuAcitve = (menuPath: string) => {
   } else if (menuPath === "/" && currentPath.value === menuPath) {
     return true;
   }
-  return false;
 };
 
 const sidebarType = ref("tail");
@@ -97,7 +107,12 @@ const sidebarType = ref("tail");
       nav
       color="primary"
     >
-      <v-list-item rounded="lg" v-for="item in mainMenu" :to="item.link">
+      <v-list-item
+        rounded="lg"
+        v-for="item in mainMenu"
+        :to="item.link"
+        :active="getMainMenuAcitve(item.link)"
+      >
         <v-list-item-subtitle>
           <div class="d-flex flex-column align-center justify-center">
             <Icon size="25" :name="item.icon"></Icon>

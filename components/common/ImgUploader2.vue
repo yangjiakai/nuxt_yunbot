@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from "@iconify/vue";
 const imageBase64 = ref("");
 const emit = defineEmits(["update:base64Str", "update:uploadImg"]);
 function handleFileChange(event: Event) {
@@ -30,10 +31,17 @@ const uniqueId = ref(Date.now());
     />
 
     <label :for="`file-upload-${uniqueId}`" class="custum-file-upload">
-      <v-img width="100%" cover v-if="imageBase64" :src="imageBase64"></v-img>
+      <v-img
+        width="200"
+        height="200"
+        contain
+        v-if="imageBase64"
+        :src="imageBase64"
+      ></v-img>
       <div v-else>
         <div class="icon">
-          <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+          <Icon width="60" icon="solar:cloud-upload-line-duotone" />
+          <!-- <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
@@ -48,7 +56,7 @@ const uniqueId = ref(Date.now());
                 fill=""
               ></path>
             </g>
-          </svg>
+          </svg> -->
         </div>
         <div class="text">
           <span>点击上传图片</span>
@@ -78,7 +86,7 @@ textarea {
 /* From Uiverse.io by csemszepp */
 .custum-file-upload {
   height: 200px;
-  width: 300px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -88,7 +96,7 @@ textarea {
   justify-content: center;
   border: 2px dashed #e8e8e8;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
+  padding: 0.5rem;
   border-radius: 10px;
   box-shadow: 0px 48px 35px -48px #e8e8e8;
 }

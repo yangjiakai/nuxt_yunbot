@@ -50,4 +50,10 @@ export default defineNuxtConfig({
       baseUrl2: "https://api2.example.com",
     },
   },
+  app: {
+    pageTransition: { name: "fade", mode: "out-in" },
+    head: {
+      title: "AIBOX",
+    },
+  },
 });

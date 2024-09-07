@@ -1,8 +1,42 @@
 <script setup lang="ts">
-import { generateRandomSeed } from "@/utils/common";
-import { createTask } from "~/utils/task";
-import { useTaskStore } from "@/stores/taskStore";
-const taskStore = useTaskStore();
+import useWebsocket from "@/hooks/useWebSocket";
+import { useImageAiStore } from "@/stores/imageAi";
+
+const imageAiStore = useImageAiStore();
+const websocketUrl =
+  "wss://api.yunrobot.cn/api/v1/AIGC/ws?client_id=648683-3-4957-b27f-ae86a68875884";
+// 定义一个响应式变量来存储接收到的消息
+// 定义收到消息时的回调函数
+const onMessage = (message: any) => {
+  switch (message.type) {
+    case "created_image":
+      imageAiStore.creations = message.data.images;
+      imageAiStore.historys.unshift(...message.data.images);
+      // imageAiStore.currentIndex = 0;
+      imageAiStore.currentCreationImage = message.data.images[0];
+      break;
+    case "end":
+      // if (message.data.result === "success") {
+      //   useToast("生成成功", { type: "success" });
+      // } else {
+      //   useToast("生成失败", { type: "error" });
+      // }
+      // useToast("生成完成", { type: "success" });
+      isCreating.value = false;
+      imageAiStore.imgCreatingDialog = false;
+
+      break;
+    default:
+      break;
+  }
+};
+
+// 使用WebSocket Hook
+const { sendMessage: sendWebSocketMessage } = useWebsocket(
+  websocketUrl,
+  onMessage
+);
+
 const panel = ref(["promptPanel", "configPanel", "stylePanel"]);
 const prompt = ref("A beautiful girl, HD，Chinese portrait");
 const styles = ref([
@@ -134,19 +168,39 @@ const isCurrentStyle = (style: any) => {
   return currentStyle.value.text === style.text;
 };
 
+const isCreating = ref<boolean>(false);
+
 const batchSize = ref(1);
 const aspectRatio = ref("1:1");
 
-const createTaskHandler = () => {
-  createTask({
+// 定义发送消息的函数
+const sendMessage = () => {
+  const message = {
     type: "flux-txt2img",
-    client_id: "32324324224",
     prompt: {
-      seed: generateRandomSeed(),
+      seed: "12345678888",
       batch_size: batchSize.value,
       positive: fullPrompt.value,
     },
-  });
+  };
+  sendWebSocketMessage(message);
+};
+
+/* -------------------------------
+   创建任务
+------------------------------- */
+
+const handleCreate = async () => {
+  isCreating.value = true;
+  imageAiStore.imgCreatingDialog = true;
+
+  try {
+    sendMessage();
+  } catch (error: any) {
+    isCreating.value = false;
+    imageAiStore.imgCreatingDialog = false;
+  } finally {
+  }
 };
 </script>
 
@@ -154,12 +208,12 @@ const createTaskHandler = () => {
   <div>
     <div class="px-2 pt-2">
       <v-btn
-        class="gradient info text-gray-50 my-2"
+        class="gradient info text-gray-50"
         color="primary"
         size="large"
         block
-        :disabled="taskStore.isLoading"
-        @click="createTaskHandler"
+        :disabled="isCreating"
+        @click="handleCreate"
         >图像生成</v-btn
       >
     </div>
