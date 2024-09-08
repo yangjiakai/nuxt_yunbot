@@ -16,12 +16,6 @@ const onMessage = (message: any) => {
       imageAiStore.currentCreationImage = message.data.images[0];
       break;
     case "end":
-      // if (message.data.result === "success") {
-      //   useToast("生成成功", { type: "success" });
-      // } else {
-      //   useToast("生成失败", { type: "error" });
-      // }
-      // useToast("生成完成", { type: "success" });
       isCreating.value = false;
       imageAiStore.imgCreatingDialog = false;
       endProgress();

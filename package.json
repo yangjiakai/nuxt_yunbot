@@ -23,8 +23,7 @@
     "vue": "latest",
     "vue-konva": "^3.1.0",
     "vue3-lottie": "^3.3.1",
-    "vue3-perfect-scrollbar": "^2.0.0",
-    "vue3-toastify": "^0.2.3"
+    "vue3-perfect-scrollbar": "^2.0.0"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
