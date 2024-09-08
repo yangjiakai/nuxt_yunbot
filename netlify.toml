@@ -1,5 +1,5 @@
 [build.environment]
-  NODE_VERSION = "22.8.0"
+  NODE_VERSION = "22.0.0"
 
 [build]
   publish = "dist"
