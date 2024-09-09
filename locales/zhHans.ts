@@ -25,10 +25,10 @@ export default {
       title: "AI 生成工具",
       text2img: "文字转图片",
       img2img: "图片转图片",
-      wear: "穿戴",
+      wear: "换装",
       avatarn: "头像生成",
       avatar: "头像",
-      inpaint: "修复",
+      inpaint: "局部重绘",
       expand: "扩展",
     },
     edit: {
