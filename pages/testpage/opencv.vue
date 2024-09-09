@@ -5,7 +5,7 @@
 -->
 <script setup lang="ts">
 definePageMeta({
-  layout: "home",
+  layout: "test",
 });
 const clickPositions = ref(null as any);
 // var coords = ref([] as any[])

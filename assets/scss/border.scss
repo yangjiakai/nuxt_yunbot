@@ -1,0 +1,254 @@
+.color-border-1 {
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(#ff4545,
+        #00ff99,
+        #006aff,
+        #ff0095,
+        #ff4545);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.7;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
+
+.color-border-2 {
+  background: #1c1f2b;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-image: conic-gradient(from var(--angle),
+        #ff4545,
+        #00ff99,
+        #006aff,
+        #ff0095,
+        #ff4545);
+
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.7;
+  }
+}
+
+.color-border-3 {
+
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(from var(--angle),
+        transparent 70%,
+        #006aff);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.7;
+  }
+}
+
+.color-border-4 {
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(from var(--angle),
+        transparent 70%,
+        #fc8605),
+      conic-gradient(from calc(var(--angle) + 180deg), transparent 70%, #fc8605);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.7;
+  }
+}
+
+.color-border-5 {
+
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(from var(--angle),
+        transparent 5%,
+        #0700e3,
+        #6c02f2,
+        #ed03dc,
+        #7c096d);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.7;
+  }
+}
+
+.color-border-6 {
+
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(from var(--angle),
+        #fff2ff,
+        #eb99f2,
+        #defcfe,
+        #91fff3,
+        #fff4ff);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(2rem);
+    opacity: 0.7;
+  }
+}
+
+.color-border-7 {
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 104%;
+    width: 104%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-image: conic-gradient(from var(--angle),
+        #ffc006,
+        #fe0100,
+        #ffc006);
+    border-radius: 10px;
+    padding: 3px;
+    z-index: -1;
+    animation: 3s linear infinite spin;
+  }
+
+  &::before {
+    filter: blur(2rem);
+    opacity: 0.7;
+  }
+}

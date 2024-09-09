@@ -105,7 +105,7 @@ const currentAnchor = ref("");
           <v-list nav>
 
             <v-list-item v-for="item in homeMenu" :key="item.text" :value="item.text" :to="item.link"
-              :prepend-icon="item.icon" color="primary" :active="item.text === 'Home'">
+              :prepend-icon="item.icon" color="primary" active>
               <template v-slot:prepend>
                 <Icon class="mx-2 mr-3" width="20" :icon="item.icon" />
               </template>

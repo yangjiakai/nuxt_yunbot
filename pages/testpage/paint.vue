@@ -7,7 +7,7 @@
 import ImgUploader from "@/components/common/ImgUploader.vue";
 import SamApp from "@/components/sam/SamApp.vue";
 definePageMeta({
-  layout: "home",
+  layout: "test",
 });
 
 const maskImgSrc = ref("");

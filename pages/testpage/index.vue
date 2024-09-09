@@ -8,7 +8,7 @@ import { Icon } from "@iconify/vue";
 import WaveCard from "~/components/card/WaveCard.vue";
 
 definePageMeta({
-  layout: "home",
+  layout: "test",
 });
 const router = useRouter();
 const pages = ref([

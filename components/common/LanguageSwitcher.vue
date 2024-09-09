@@ -5,7 +5,7 @@
 -->
 <script setup lang="ts">
 import { useLocale } from "vuetify";
-
+import { Icon } from "@iconify/vue";
 const { current } = useLocale();
 const availableLocales = [
   {
@@ -50,19 +50,15 @@ watch(current, (newLocale) => {
   <v-menu>
     <template v-slot:activator="{ props }">
       <v-btn icon v-bind="props">
-        <v-icon color="primary">mdi-translate</v-icon>
+        <v-icon>mdi-translate</v-icon>
+        <!-- <Icon icon="vscode-icons:file-type-locale"></Icon> -->
       </v-btn>
     </template>
     <v-list nav>
-      <v-list-item
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        @click="setLocale(locale.code)"
-        density="compact"
-        :active="locale.code === current"
-      >
+      <v-list-item v-for="locale in availableLocales" :key="locale.code" @click="setLocale(locale.code)"
+        density="compact" :active="locale.code === current">
         <template v-slot:prepend>
-          <Icon :name="`twemoji:flag-${locale.name}`" class="mr-2" />
+          <Icon :icon="`twemoji:flag-${locale.name}`" class="mr-2" />
         </template>
         <v-list-item-title> {{ locale.label }}</v-list-item-title>
       </v-list-item>

@@ -13,6 +13,7 @@ import PanelImageGeneration from "@/components/panels/PanelImageGeneration.vue";
 import PanelInpaint from "@/components/panels/PanelInpaint.vue";
 import PanelEdit from "@/components/panels/PanelEdit.vue";
 import PanelDesign from "@/components/panels/PanelDesign.vue";
+import PanelWear from "../panels/PanelWear.vue";
 const router = useRouter();
 
 const appStore = useAppStore();
@@ -30,24 +31,19 @@ const toComelCase = (str: string) => {
 </script>
 
 <template>
-  <v-navigation-drawer
-    class="sub-sidebar text-white"
-    v-model="appStore.subSidebar"
-    width="340"
-    color="rgba(40,40,40,.5)"
-  >
+  <v-navigation-drawer class="sub-sidebar text-white" v-model="appStore.subSidebar" width="340"
+    color="rgba(40,40,40,.5)">
     <!-- ---------------------------------------------- -->
     <!---Top Area -->
     <!-- ---------------------------------------------- -->
-    <template v-slot:prepend>
+    <!-- <template v-slot:prepend>
       <v-card
         height="70"
         variant="flat"
         class="d-flex align-center justify-space-between px-5"
       >
         <h4 class="text-body-1 font-weight-bold">
-          <!-- {{ $t("aiTools." + toComelCase(currentPath)) }} -->
-          AITOOLS
+     
         </h4>
         <v-btn
           variant="text"
@@ -61,7 +57,7 @@ const toComelCase = (str: string) => {
           <v-icon icon="mdi-close"></v-icon>
         </v-btn>
       </v-card>
-    </template>
+    </template> -->
     <!-- ---------------------------------------------- -->
     <!---Nav List -->
     <!-- ---------------------------------------------- -->
@@ -78,14 +74,11 @@ const toComelCase = (str: string) => {
         <PanelInpaint v-else-if="currentPath === 'inpaint'" />
         <PanelEdit v-else-if="currentPath === 'edit'" />
         <PanelDesign v-else-if="currentPath === 'design'" />
+        <PanelWear v-else-if="currentPath === 'wear'" />
         <PanelDeafault v-else />
       </perfect-scrollbar>
     </div>
   </v-navigation-drawer>
 </template>
 
-<style scoped lang="scss">
-.scrollnav {
-  height: calc(100vh - 100px);
-}
-</style>
+<style scoped lang="scss"></style>

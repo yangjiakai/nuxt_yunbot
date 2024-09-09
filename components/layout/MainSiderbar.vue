@@ -5,60 +5,39 @@
 -->
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
-
+import { Icon } from "@iconify/vue";
 const router = useRouter();
 const appStore = useAppStore();
 
 const mainMenu = ref([
   {
-    text: "Home",
+    text: "menu.home",
     link: "/",
     icon: "solar:widget-add-bold-duotone",
   },
   {
-    text: "Image Generate",
+    text: "menu.generate",
     link: "/generate",
     icon: "solar:gallery-add-line-duotone",
   },
   {
-    text: "Image Edit",
+    text: "menu.edit",
     link: "/edit",
     icon: "solar:gallery-edit-bold-duotone",
   },
   {
-    text: "Design",
+    text: "menu.design",
     link: "/design",
     icon: "solar:paw-bold-duotone",
   },
-  // {
-  //   text: "聊天",
-  //   link: "/ai-chat",
-  //   icon: "solar:filters-bold-duotone",
-  // },
-
-  // {
-  //   text: "设计",
-  //   link: "/ai-design",
-  //   icon: "solar:pallete-2-bold-duotone",
-  // },
-  // {
-  //   text: "语音",
-  //   link: "/ai-voice",
-  //   icon: "solar:cart-large-2-bold-duotone",
-  // },
-  // {
-  //   text: "视频",
-  //   link: "/ai-video",
-  //   icon: "solar:shop-2-bold-duotone",
-  // },
 
   {
-    text: "测试",
+    text: "menu.testpage",
     link: "/testpage",
     icon: "solar:ruler-pen-bold-duotone",
   },
   {
-    text: "设置",
+    text: "menu.config",
     link: "/config",
     icon: "solar:settings-bold-duotone",
   },
@@ -78,16 +57,11 @@ const getMainMenuAcitve = (menuPath: string) => {
   }
 };
 
-const sidebarType = ref("tail");
+const sidebarType = ref("chip");
 </script>
 
 <template>
-  <v-navigation-drawer
-    v-model="appStore.mainSidebar"
-    elevation="0"
-    location="left"
-    rail
-  >
+  <v-navigation-drawer v-model="appStore.mainSidebar" elevation="0" location="left" width="100">
     <!-- ---------------------------------------------- -->
     <!---Top Area -->
     <!-- ---------------------------------------------- -->
@@ -95,51 +69,31 @@ const sidebarType = ref("tail");
     <template v-slot:prepend>
       <router-link to="/">
         <div class="d-flex flex-column align-center my-8" variant="flat">
-          <img width="60" src="@/assets/images/logo.png" alt="" />
+          <Icon icon="token-branded:dxp" width="46" />
+          <p class="mt-2 font-weight-bold">AI Box</p>
+          <!-- <img width="60" src="@/assets/images/logo.png" alt="" /> -->
           <!-- <span class="text-grey-500 text-body-2">yunbot</span> -->
         </div>
       </router-link>
     </template>
-    <v-list
-      v-if="sidebarType === 'chip'"
-      lines="three"
-      density="compact"
-      nav
-      color="primary"
-    >
-      <v-list-item
-        rounded="lg"
-        v-for="item in mainMenu"
-        :to="item.link"
-        :active="getMainMenuAcitve(item.link)"
-      >
+    <v-list v-if="sidebarType === 'chip'" lines="three" density="compact" nav color="primary">
+      <v-list-item rounded="lg" v-for="item in mainMenu" :to="item.link" :active="getMainMenuAcitve(item.link)">
         <v-list-item-subtitle>
           <div class="d-flex flex-column align-center justify-center">
-            <Icon size="25" :name="item.icon"></Icon>
+            <Icon width="25" :icon="item.icon"></Icon>
 
-            <div class="mt-2 font-weight-bold">{{ item.text }}</div>
-          </div></v-list-item-subtitle
-        >
+            <div class="mt-2 font-weight-bold text-center">{{ $t(item.text) }}</div>
+          </div>
+        </v-list-item-subtitle>
       </v-list-item>
     </v-list>
     <v-list v-else-if="sidebarType === 'tail'" lines="two">
-      <v-list-item
-        v-for="item in mainMenu"
-        :to="item.link"
-        :active="getMainMenuAcitve(item.link)"
-        :prepend-icon="item.icon"
-        @click="appStore.currentPanel = item.text"
-      >
+      <v-list-item v-for="item in mainMenu" :to="item.link" :active="getMainMenuAcitve(item.link)"
+        :prepend-icon="item.icon" @click="appStore.currentPanel = item.text">
         <template v-slot:prepend>
-          <Icon size="25" :name="item.icon"></Icon>
+          <Icon width="25" :icon="item.icon"></Icon>
         </template>
-        <v-tooltip
-          activator="parent"
-          location="right"
-          class=""
-          :text="item.text"
-          theme="light"
-        ></v-tooltip>
+        <v-tooltip activator="parent" location="right" class="" :text="item.text" theme="light"></v-tooltip>
       </v-list-item>
     </v-list>
     <!-- ---------------------------------------------- -->

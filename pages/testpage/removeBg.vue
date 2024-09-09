@@ -14,7 +14,7 @@ import { useDraggable } from "@vueuse/core";
 import { isClient } from "@vueuse/shared";
 
 definePageMeta({
-  layout: "home",
+  layout: "test",
 });
 const draggableImg = ref<HTMLElement | null>(null);
 const handle = ref<HTMLElement | null>(null);

@@ -837,114 +837,60 @@ onMounted(() => {
   <div class="h-full d-flex flex-column">
     <div class="d-flex py-2">
       <v-spacer></v-spacer>
-      <v-btn class="mr-3" @click="handleReset" color="primary">重置选区</v-btn>
-      <v-btn-toggle
-        v-model="userNegClickBool"
-        divided
-        color="primary"
-        density="compact"
-        variant="outlined"
-      >
+      <v-btn class="mr-3" @click="handleReset" color="primary">{{ $t("btn.resetSelection") }}</v-btn>
+      <v-btn-toggle v-model="userNegClickBool" divided color="primary" density="compact" variant="outlined">
         <v-btn>
-          增加选区
+          {{ $t("btn.addSelection") }}
           <v-icon icon="mdi-plus" value="false"></v-icon>
         </v-btn>
 
         <v-btn>
-          减少选区
+          {{ $t("btn.removeSelection") }}
           <v-icon icon="mdi-minus" value="true"></v-icon>
         </v-btn>
       </v-btn-toggle>
     </div>
     <div
       class="pa-5 w-full flex-grow-1 position-relative dotted-card .dotted-card { border: 2px dashed #ccc; border-radius: 10px; }"
-      ref="containerRef"
-    >
-      <div
-        ref="scrollRef"
-        class="position-absolute w-auto h-auto overflow-visible absolute-center bg-success"
-      >
-        <div
-          :style="scaledDimensionsStyle"
-          class="position-relative"
-          :class="{ 'pointer-events-none': isLoading }"
-        >
-          <div
-            class="position-absolute w-full h-full bg-black pointer-events-none background"
-          ></div>
-          <img
-            class="position-absolute w-full h-full ma-0 pointer-events-none"
-            :src="image?.src"
-            :class="{ 'opacity-40': isLoading || hasClicked }"
-          />
-          <SvgMask
-            v-if="svg && modelScale && hasClicked"
-            :xScale="modelScale.width * modelScale.uploadScale"
-            :yScale="modelScale.height * modelScale.uploadScale"
-            :click="click"
-            :image="image"
-            :isLoading="isLoading"
-            :isErasing="isErasing"
-            :svg="svg"
-          ></SvgMask>
+      ref="containerRef">
+      <div ref="scrollRef" class="position-absolute w-auto h-auto overflow-visible absolute-center bg-success">
+        <div :style="scaledDimensionsStyle" class="position-relative" :class="{ 'pointer-events-none': isLoading }">
+          <div class="position-absolute w-full h-full bg-black pointer-events-none background"></div>
+          <img class="position-absolute w-full h-full ma-0 pointer-events-none" :src="image?.src"
+            :class="{ 'opacity-40': isLoading || hasClicked }" />
+          <SvgMask v-if="svg && modelScale && hasClicked" :xScale="modelScale.width * modelScale.uploadScale"
+            :yScale="modelScale.height * modelScale.uploadScale" :click="click" :image="image" :isLoading="isLoading"
+            :isErasing="isErasing" :svg="svg"></SvgMask>
           <div :style="scalingStyle" ref="konvaRef">
-            <v-stage
-              class="konva"
-              :config="{
-                width: canvasDimensions.width,
-                height: canvasDimensions.height,
-                pixelRatio: 1,
-              }"
-              @mousedown="handleMouseDown"
-              @mouseup="handleMouseUp"
-              @mousemove="handleMouseMove"
-              @mouseout="handleMouseOut"
-              @mouseleave="handleMouseOut"
-              @contextmenu="console.log('contextmenu')"
-            >
+            <v-stage class="konva" :config="{
+              width: canvasDimensions.width,
+              height: canvasDimensions.height,
+              pixelRatio: 1,
+            }" @mousedown="handleMouseDown" @mouseup="handleMouseUp" @mousemove="handleMouseMove"
+              @mouseout="handleMouseOut" @mouseleave="handleMouseOut" @contextmenu="console.log('contextmenu')">
               <v-layer ref="layerRef" name="svgMask">
-                <v-image
-                  :image="imageClone"
-                  :x="0"
-                  :y="0"
-                  :width="canvasDimensions.width"
-                  :height="canvasDimensions.height"
-                  :opacity="0"
-                  :preventDefault="false"
-                  ref="imageRef"
-                ></v-image>
+                <v-image :image="imageClone" :x="0" :y="0" :width="canvasDimensions.width"
+                  :height="canvasDimensions.height" :opacity="0" :preventDefault="false" ref="imageRef"></v-image>
                 <template v-if="svg && modelScale && hasClicked"></template>
               </v-layer>
 
               <v-layer name="annotations">
                 <template v-if="clicks && hasClicked && modelScale">
-                  <v-circle
-                    v-for="(click, idx) in clicks"
-                    :key="idx"
-                    :id="`${idx}`"
-                    :x="(click.x * canvasScale) / modelScale.scale"
-                    :y="(click.y * canvasScale) / modelScale.scale"
-                    :fill="handleClickColor(click.clickType)"
-                    :radius="(5 * canvasScale) / modelScale.scale"
-                    :shadowBlur="5"
-                    :shadowColor="
-                      handleClickColor(click.clickType) === positiveClickColor
+                  <v-circle v-for="(click, idx) in clicks" :key="idx" :id="`${idx}`"
+                    :x="(click.x * canvasScale) / modelScale.scale" :y="(click.y * canvasScale) / modelScale.scale"
+                    :fill="handleClickColor(click.clickType)" :radius="(5 * canvasScale) / modelScale.scale"
+                    :shadowBlur="5" :shadowColor="handleClickColor(click.clickType) === positiveClickColor
                         ? 'black'
                         : handleClickColor(click.clickType)
-                    "
-                    :preventDefault="false"
-                  />
+                      " :preventDefault="false" />
                 </template>
               </v-layer>
             </v-stage>
           </div>
 
           <!-- Hover时的蒙版 -->
-          <img
-            v-if="maskImg && !hasClicked"
-            :src="maskImg?.src"
-            class="ma-0 position-absolute w-full h-full opacity-40 top-0 pointer-events-none"
-          />
+          <img v-if="maskImg && !hasClicked" :src="maskImg?.src"
+            class="ma-0 position-absolute w-full h-full opacity-40 top-0 pointer-events-none" />
         </div>
       </div>
     </div>
@@ -959,12 +905,8 @@ onMounted(() => {
           </template>
 
           <template v-slot:append>
-            <v-progress-circular
-              color="primary"
-              indeterminate="disable-shrink"
-              size="16"
-              width="2"
-            ></v-progress-circular>
+            <v-progress-circular color="primary" indeterminate="disable-shrink" size="16"
+              width="2"></v-progress-circular>
           </template>
         </v-list-item>
       </v-list>

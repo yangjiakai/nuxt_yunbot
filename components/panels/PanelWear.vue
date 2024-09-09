@@ -62,13 +62,13 @@ const handleCreate = () => {
     <perfect-scrollbar class="config-panel overflow-auto pa-2">
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel value="baseImgPanel">
-          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.sourceImage") }}</v-expansion-panel-title>
+          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.model") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
             <ImgUploader @update:base64Str="handleBase64Update" @update:uploadImg="handleImageFileUpdate" />
           </v-expansion-panel-text>
         </v-expansion-panel>
         <v-expansion-panel value="refImgPanel">
-          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.refImage") }}</v-expansion-panel-title>
+          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.wear") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
             <ImgUploader @update:base64Str="handleRefImgUpdate" />
           </v-expansion-panel-text>

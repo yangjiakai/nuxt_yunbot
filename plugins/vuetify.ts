@@ -20,7 +20,7 @@ const light = {
   colors: {
     background: "#F2F5FA",
     surface: "#FFFFFF",
-    primary: "#6366f1",
+    primary: "#2664ff",
     secondary: "#03DAC6",
     error: "#FC3C56",
     info: "#2196F3",
@@ -70,7 +70,7 @@ const light = {
 const dark = {
   dark: true,
   colors: {
-    primary: "#6366f1",
+    primary: "#3b82ff",
     secondary: "#A8AAAE",
     success: "#28C76F",
     info: "#2196F3",
@@ -127,8 +127,6 @@ export default defineNuxtPlugin((app) => {
       VCard: {
         // 您可以在这里添加其他默认属性
         // 例如：
-        // color: 'primary',
-        elevation: 2,
       },
       // 您也可以为其他组件设置默认值
       // VBtn: { ... },

@@ -2,6 +2,9 @@
 import { generateRandomSeed } from "@/utils/common";
 import { createTask } from "~/utils/task";
 import { useTaskStore } from "@/stores/taskStore";
+import SubHeader from "~/components/layout/SubHeader.vue";
+import Button1 from "~/components/UI/button/Button1.vue";
+const router = useRouter();
 const taskStore = useTaskStore();
 const panel = ref(["promptPanel", "configPanel", "stylePanel"]);
 const prompt = ref("A beautiful girl, HD，Chinese portrait");
@@ -152,77 +155,39 @@ const handleCreate = () => {
 
 <template>
   <div>
-    <div class="px-2 pt-2">
-      <v-btn
-        class="gradient info text-gray-50 my-2"
-        color="primary"
-        size="large"
-        block
-        :disabled="taskStore.isLoading"
-        @click="handleCreate"
-        >图像生成</v-btn
-      >
+    <SubHeader title="aiTools.generate.text2img" link="/generate" />
+    <div class="px-2 pt-2 ">
+      <Button1 @click="handleCreate" text="btn.create" />
+      <!-- <v-btn class="gradient info text-gray-50 my-2" color="primary" size="large" block :disabled="taskStore.isLoading"
+        @click="handleCreate">图像生成</v-btn> -->
     </div>
-    <perfect-scrollbar class="config-panel overflow-auto pa-2">
+    <perfect-scrollbar class="config-panel  pa-2">
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel value="promptPanel">
-          <v-expansion-panel-title class="font-weight-bold"
-            >提示词</v-expansion-panel-title
-          >
+          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.prompt") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
-            <v-textarea
-              v-model="prompt"
-              color="primary"
-              variant="outlined"
-              counter
-              hide-details
-            ></v-textarea>
+            <v-textarea v-model="prompt" color="primary" variant="outlined" counter hide-details></v-textarea>
           </v-expansion-panel-text>
         </v-expansion-panel>
         <v-expansion-panel value="configPanel">
-          <v-expansion-panel-title class="font-weight-bold"
-            >基础参数</v-expansion-panel-title
-          >
+          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.baseParam") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
             <!-- Param -->
 
             <div class="d-flex gap-1 mb-5">
-              <v-select
-                v-model="aspectRatio"
-                label="比例"
-                density="compact"
-                hide-details
-                color="primary"
-                class="flex-grow-1"
-                :items="['1:1', '4:3', '3:4', '16:9', '9:16']"
-                variant="outlined"
-              ></v-select>
-              <v-select
-                label="数量"
-                v-model="batchSize"
-                density="compact"
-                hide-details
-                color="primary"
-                class="flex-grow-1"
-                :items="[1, 2, 3, 4]"
-                variant="outlined"
-              ></v-select>
+              <v-select v-model="aspectRatio" label="比例" density="compact" hide-details color="primary"
+                class="flex-grow-1" :items="['1:1', '4:3', '3:4', '16:9', '9:16']" variant="outlined"></v-select>
+              <v-select label="数量" v-model="batchSize" density="compact" hide-details color="primary"
+                class="flex-grow-1" :items="[1, 2, 3, 4]" variant="outlined"></v-select>
             </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
         <v-expansion-panel value="stylePanel">
-          <v-expansion-panel-title class="font-weight-bold"
-            >风格</v-expansion-panel-title
-          >
+          <v-expansion-panel-title class="font-weight-bold">{{ $t("header.style") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
             <div class="grid gap-2 grid-cols-3">
-              <div
-                v-for="style in styles"
-                :key="style.text"
-                class="cursor-pointer"
-                :class="isCurrentStyle(style) ? ' light-border ' : ''"
-                @click="handleStyle(style)"
-              >
+              <div v-for="style in styles" :key="style.text" class="cursor-pointer"
+                :class="isCurrentStyle(style) ? ' color-border-3 ' : ''" @click="handleStyle(style)">
                 <v-img :src="style.cover" class="rounded-lg ma-1"></v-img>
                 <div class="text-center text-xs font-bold py-2">
                   {{ style.textZh }}
@@ -238,58 +203,6 @@ const handleCreate = () => {
 
 <style scoped lang="scss">
 .config-panel {
-  height: calc(100vh - 172px);
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes spin {
-  from {
-    --angle: 0deg;
-  }
-  to {
-    --angle: 360deg;
-  }
-}
-
-.light-border {
-  background: #1c1f2b;
-
-  border-radius: 10px;
-  position: relative;
-
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    height: 105%;
-    width: 105%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background-image: conic-gradient(
-        from var(--angle),
-        transparent 70%,
-        rgba(var(--v-theme-primary))
-      ),
-      conic-gradient(
-        from calc(var(--angle) + 180deg),
-        transparent 70%,
-        rgba(var(--v-theme-primary))
-      );
-    border-radius: 10px;
-    padding: 3px;
-    z-index: -1 !important;
-    animation: 3s linear infinite spin;
-  }
-  &::before {
-    filter: blur(1.5rem);
-    opacity: 0.7;
-  }
+  height: calc(100vh - 144px);
 }
 </style>

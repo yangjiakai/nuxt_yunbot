@@ -1,3 +1,4 @@
+import Inpaint from "~/pages/generate/inpaint.vue";
 import vuetifyZhHans from "./vuetify/zhHans";
 export default {
   // Vuetify 组件内部翻译
@@ -18,5 +19,85 @@ export default {
     policy: "安全条款",
     logout: "退出登录",
     config: "配置",
+  },
+  aiTools: {
+    generate: {
+      title: "AI 生成工具",
+      text2img: "文字转图片",
+      img2img: "图片转图片",
+      wear: "穿戴",
+      avatarn: "头像生成",
+      avatar: "头像",
+      inpaint: "修复",
+      expand: "扩展",
+    },
+    edit: {
+      title: "AI 图像编辑",
+      enhanse: "增强",
+      upscaler: "放大",
+      beauty: "美化",
+      removeObject: "删除对象",
+      removeBg: "去除背景",
+      blurBg: "背景模糊",
+      textRemover: "文字去除",
+      filtern: "滤镜",
+      goart: "艺术",
+      colorRestorer: "颜色恢复",
+      colorize: "上色",
+    },
+    design: {
+      title: "AI 图像设计",
+      icon: "图标设计",
+      poster: "海报设计",
+      banner: "横幅设计",
+      ad: "广告设计",
+    },
+  },
+  menu: {
+    home: "首页",
+    creations: "我的作品",
+    favorites: "我的收藏",
+    trash: "回收站",
+    testpage: "测试页面",
+    config: "配置",
+    generate: "AI 生成工具",
+    edit: "AI 图像编辑",
+    design: "AI 图像设计",
+  },
+
+  header: {
+    aiTools: "AI 工具",
+    myClould: "我的云盘",
+    try: " 你可能需要试试...",
+    style: "风格",
+    prompt: "提示词",
+    baseParam: "基础参数",
+    creation: "生成结果",
+    history: "历史记录",
+    sourceImage: "原图",
+    refImage: "参考图",
+    selection: "选区",
+    model: "模特",
+    wear: "服装",
+  },
+
+  banner: {
+    welcome: "欢迎使用 AI Box",
+  },
+  btn: {
+    create: "图像生成",
+    login: "登录",
+    register: "注册",
+    logout: "登出",
+    Inpaint: "重绘",
+    addSelection: "添加选区",
+    removeSelection: "删除选区",
+    resetSelection: "重置",
+  },
+  info: {
+    noData: "暂无数据",
+    loadingModel: "正在加载模型...",
+    imageGenerating: "图像生成中",
+    uploadImage: "上传图片",
   },
 };
