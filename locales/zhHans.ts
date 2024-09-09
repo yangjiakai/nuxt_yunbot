@@ -94,6 +94,10 @@ export default {
     removeSelection: "删除选区",
     resetSelection: "重置",
   },
+  label: {
+    ratio: "比例",
+    number: "数量",
+  },
   info: {
     noData: "暂无数据",
     loadingModel: "正在加载模型...",

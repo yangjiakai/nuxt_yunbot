@@ -11,6 +11,8 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/tailwind.css", "~/assets/scss/main.scss"],
   modules: [
+    "@pinia/nuxt", // needed
+    "@pinia-plugin-persistedstate/nuxt",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error
@@ -18,8 +20,6 @@ export default defineNuxtConfig({
       });
     },
     "vue3-perfect-scrollbar/nuxt",
-    "@pinia/nuxt", // needed
-    "@pinia-plugin-persistedstate/nuxt",
     "@nuxt/icon",
     "nuxt-lodash",
     "@vueuse/nuxt",

@@ -175,9 +175,9 @@ const handleCreate = () => {
             <!-- Param -->
 
             <div class="d-flex gap-1 mb-5">
-              <v-select v-model="aspectRatio" label="比例" density="compact" hide-details color="primary"
+              <v-select v-model="aspectRatio" :label="$t('label.ratio')" density="compact" hide-details color="primary"
                 class="flex-grow-1" :items="['1:1', '4:3', '3:4', '16:9', '9:16']" variant="outlined"></v-select>
-              <v-select label="数量" v-model="batchSize" density="compact" hide-details color="primary"
+              <v-select :label="$t('label.number')" v-model="batchSize" density="compact" hide-details color="primary"
                 class="flex-grow-1" :items="[1, 2, 3, 4]" variant="outlined"></v-select>
             </div>
           </v-expansion-panel-text>

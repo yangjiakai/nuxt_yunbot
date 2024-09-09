@@ -23,6 +23,8 @@ interface ProgressResponse {
 type SuccessHandler = (progressData: ProgressResponse) => void;
 
 const defaultSuccessHandler: SuccessHandler = (progressData) => {
+  console.log(progressData);
+
   imageAiStore.creations = progressData.data.history;
   imageAiStore.historys.unshift(...progressData.data.history);
   imageAiStore.currentCreationImage = progressData.data.history[0];
@@ -52,7 +54,7 @@ export const createTask = async (
   } = {}
 ) => {
   const { taskApiOptions = {}, progressApiOptions = {} } = options;
-  const POLL_INTERVAL = 3000; // 5秒
+  const POLL_INTERVAL = 1000; // 1秒
   const MAX_POLL_TIME = 50000; // 50秒
   taskStore.startTask();
 

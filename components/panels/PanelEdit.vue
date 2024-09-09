@@ -9,7 +9,7 @@ const router = useRouter();
 const panel = ref(["editTools"]);
 const editTools = ref(editToolsData);
 const currenTool = ref({
-  link: "enhanse",
+  link: "edit/enhanse",
   text: "aiTools.edit.enhanse",
   cover: "https://www.fotor.com/photo-editor-app/ai/thumb/enhance.jpg",
 });

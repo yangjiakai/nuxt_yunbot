@@ -93,6 +93,10 @@ export default {
     removeSelection: "Remove Selection",
     resetSelection: "Init Selection",
   },
+  label: {
+    ratio: "Ratio",
+    number: "Number",
+  },
   info: {
     noData: "No Data",
     loadingModel: "Loading Model...",

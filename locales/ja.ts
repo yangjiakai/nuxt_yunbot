@@ -98,6 +98,10 @@ export default {
     deleteAll: "全削除",
     share: "共有",
   },
+  label: {
+    ratio: "比率",
+    number: "数",
+  },
   info: {
     noData: "データなし",
     loadingModel: "モデル読み込み中",

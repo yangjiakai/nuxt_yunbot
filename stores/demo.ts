@@ -17,4 +17,5 @@ export const useCounterStore = defineStore("counter", {
       storage: persistedState.localStorage,
     },
   ],
+  // persist:true
 });
