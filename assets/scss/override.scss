@@ -12,6 +12,10 @@ html {
 // Vuetify 特定覆盖
 .v-application {
   font-family: 'Quicksand', sans-serif !important;
+  [class*="text-"] {
+    font-family: 'Quicksand', sans-serif !important;
+  }
+
 
   .v-application--wrap {
     font-family: 'Quicksand', sans-serif !important;

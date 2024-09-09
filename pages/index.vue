@@ -94,11 +94,11 @@ const currentAnchor = ref("");
         <v-navigation-drawer theme="light" permanent class="px-2">
           <!-- prepend -->
           <template v-slot:prepend>
-            <div class="pl-3 py-5">
-              <h3 class="text-h5 d-flex align-center">
+            <div class="pa-5  ">
+              <h3 class="text-2xl font-weight-bold d-flex align-center ">
 
                 <Icon icon="token-branded:dxp" width="30" class="mr-2" />
-                AI Box
+                <span>AI Box</span>
               </h3>
             </div>
           </template>
@@ -182,7 +182,7 @@ const currentAnchor = ref("");
           <div class="h-full pa-5">
             <!-- Banner -->
             <v-card height="160" class="d-flex align-center justify-center banner-gradient text-white">
-              <h1 class="text-h4 font-weight-bold">{{ $t("banner.welcome") }}</h1>
+              <h1 class="text-3xl font-weight-bold">{{ $t("banner.welcome") }}</h1>
             </v-card>
 
             <!-- Recomended -->

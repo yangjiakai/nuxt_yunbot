@@ -68,7 +68,7 @@ export default {
   header: {
     aiTools: "AI 工具",
     myClould: "我的云盘",
-    try: " 你可能需要试试...",
+    try: " 尝试以下功能...",
     style: "风格",
     prompt: "提示词",
     baseParam: "基础参数",

@@ -5,6 +5,7 @@
 -->
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
+import LanguageSwitcher from '~/components/common/LanguageSwitcher.vue';
 const appStore = useAppStore();
 </script>
 
@@ -18,6 +19,7 @@ const appStore = useAppStore();
     </template>
 
     <v-spacer></v-spacer>
+    <LanguageSwitcher />
     <v-btn class="font-weight-bold" color="primary" @click="appStore.toggleAuthDialog">{{ $t("btn.login") }}</v-btn>
   </v-app-bar>
 </template>

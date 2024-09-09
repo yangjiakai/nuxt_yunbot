@@ -45,7 +45,7 @@ const router = useRouter()
 
               </v-card-text>
 
-              <h1 class="text-body-2 d-flex align-center  pa-3 pa-lg-5">
+              <h1 class="font-weight-bold d-flex align-center  pa-3 pa-lg-5">
                 <Icon class="mr-2" width="20" :icon="tool.icon"></Icon>
                 {{ $t(tool.text) }}
               </h1>
