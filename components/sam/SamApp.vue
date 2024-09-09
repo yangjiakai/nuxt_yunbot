@@ -103,7 +103,7 @@ const setShowLoadingModal = (value: boolean) => {
 };
 
 // 加载中文本
-const loadingText = ref("正在加载中...");
+const loadingText = ref("Model Loading");
 const setLoadingText = (value: string) => {
   loadingText.value = value;
 };
@@ -580,7 +580,7 @@ const initOrtParams = () => {
 // 初始化模型 InferenceSession
 const initModal = async () => {
   logger("模型加载开始");
-  setLoadingText("模型加载中...");
+  setLoadingText("Model Loading...");
   setShowLoadingModal(true);
   try {
     const MODEL_DIR =

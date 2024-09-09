@@ -52,7 +52,7 @@ const taskStore = useTaskStore();
         :width="200"
       />
 
-      <p class="text-white">AI创作中...</p>
+      <p class="text-white">{{ $t("info.imageGenerating") }}</p>
     </div>
   </v-dialog>
 </template>

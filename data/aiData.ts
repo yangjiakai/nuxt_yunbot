@@ -34,22 +34,10 @@ export const generateToolsData = [
     icon: "solar:clipboard-text-line-duotone",
   },
   {
-    link: "generate/img2img",
-    text: "aiTools.generate.img2img",
-    cover: "https://www.fotor.com/photo-editor-app/ai/thumb/aiimage.jpg",
-    icon: "solar:wallpaper-line-duotone",
-  },
-  {
     link: "generate/inpaint",
     text: "aiTools.generate.inpaint",
     cover: "https://www.fotor.com/photo-editor-app/ai/thumb/ai_replace.jpg",
     icon: "solar:pallete-2-line-duotone",
-  },
-  {
-    link: "generate/expand",
-    text: "aiTools.generate.expand",
-    cover: "https://www.fotor.com/photo-editor-app/ai/thumb/ai_expand.jpg",
-    icon: "solar:maximize-square-minimalistic-line-duotone",
   },
   {
     link: "generate/wear",
@@ -57,6 +45,20 @@ export const generateToolsData = [
     cover: "https://www.fotor.com/photo-editor-app/ai/thumb/aiimage.jpg",
     icon: "solar:skirt-line-duotone",
   },
+  {
+    link: "generate/img2img",
+    text: "aiTools.generate.img2img",
+    cover: "https://www.fotor.com/photo-editor-app/ai/thumb/aiimage.jpg",
+    icon: "solar:wallpaper-line-duotone",
+  },
+
+  {
+    link: "generate/expand",
+    text: "aiTools.generate.expand",
+    cover: "https://www.fotor.com/photo-editor-app/ai/thumb/ai_expand.jpg",
+    icon: "solar:maximize-square-minimalistic-line-duotone",
+  },
+
   {
     link: "generate/avatarn",
     text: "aiTools.generate.avatarn",
