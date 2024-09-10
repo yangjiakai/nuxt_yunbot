@@ -4,125 +4,22 @@ import { createTask } from "~/utils/task";
 import { useTaskStore } from "@/stores/taskStore";
 import SubHeader from "~/components/layout/SubHeader.vue";
 import Button1 from "~/components/UI/button/Button1.vue";
+import { styleData } from "@/data/aiData";
 const router = useRouter();
 const taskStore = useTaskStore();
 const panel = ref(["promptPanel", "configPanel", "stylePanel"]);
 const prompt = ref("A beautiful girl, HD，Chinese portrait");
-const styles = ref([
-  {
-    text: "None",
-    textZh: "无",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/fotorWeb/rg0th3khguqn.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Photography",
-    textZh: "摄影",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/5a61d47x6r1c.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Psychedelic",
-    textZh: "迷幻",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/185w5i9s26er.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Digital Art",
-    textZh: "数字艺术",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/rskwaasqq9se.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Art Oils",
-    textZh: "油画艺术",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/tlzz7y7pjrws.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Tattoo",
-    textZh: "纹身",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/h9cpi98sa41p.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Acrylic Painting",
-    textZh: "丙烯画",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/j2ubca96rmfs.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Chinese Illustration",
-    textZh: "中国插画",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/k1tkfjdvevf1.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Chinese Ink Painting",
-    textZh: "中国水墨画",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/cva58ri9o55i.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Colored Pencil Drawing",
-    textZh: "彩色铅笔画",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/i7rol6bmvxio.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Color Manga",
-    textZh: "彩色漫画",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/8osa2ndgux1h.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Neonpunk",
-    textZh: "霓虹朋克",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/yqhk8jzwnowa.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Tee Printing",
-    textZh: "T恤印花",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/ni49174se7yt.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Anime",
-    textZh: "动漫",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/bij6jpquh9ug.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Cinematic",
-    textZh: "电影风格",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/uhgtz698jloy.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Icon",
-    textZh: "图标",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/13b0d1pplfpp.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Logo",
-    textZh: "标志",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/bs1c9fat0rn4.jpg@196w_196h_1l.src",
-  },
-  {
-    text: "Pixel Art",
-    textZh: "像素艺术",
-    cover:
-      "https://pub-static.fotor.com/assets/aiImageConfig/template/teauo5you13o.jpg@196w_196h_1l.src",
-  },
-]);
+const styles = ref(styleData);
 
-const currentStyle = ref(styles.value[0]);
+const currentStyle = ref({
+  key: "none",
+  text: "style.none",
+  cover:
+    "https://pub-static.fotor.com/assets/aiImageConfig/template/fotorWeb/rg0th3khguqn.jpg@196w_196h_1l.src",
+});
 
 const stylePrompt = computed(() => {
-  return `style is ${currentStyle.value.text} `;
+  return `style is ${currentStyle.value.key} `;
 });
 
 const fullPrompt = computed(() => {
@@ -134,7 +31,7 @@ const handleStyle = (style: any) => {
 };
 
 const isCurrentStyle = (style: any) => {
-  return currentStyle.value.text === style.text;
+  return currentStyle.value.key === style.key;
 };
 
 const batchSize = ref(1);
@@ -186,11 +83,11 @@ const handleCreate = () => {
           <v-expansion-panel-title class="font-weight-bold">{{ $t("header.style") }}</v-expansion-panel-title>
           <v-expansion-panel-text>
             <div class="grid gap-2 grid-cols-3">
-              <div v-for="style in styles" :key="style.text" class="cursor-pointer"
+              <div v-for="style in styles" :key="style.key" class="cursor-pointer"
                 :class="isCurrentStyle(style) ? ' color-border-3 ' : ''" @click="handleStyle(style)">
                 <v-img :src="style.cover" class="rounded-lg ma-1"></v-img>
                 <div class="text-center text-xs font-bold py-2">
-                  {{ style.textZh }}
+                  {{ $t(style.text) }}
                 </div>
               </div>
             </div>

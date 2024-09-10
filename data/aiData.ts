@@ -190,7 +190,7 @@ export const recomendedToolsData = [
     color: "#FFEFE3",
     link: "/design/ad",
   },
-   {
+  {
     icon: "token-branded:cnfi",
     text: "Collage Maker",
     color: "#FFF4E2",
@@ -225,5 +225,116 @@ export const recomendedToolsData = [
     text: "aiTools.design.icon",
     color: "#FFEFF8",
     link: "/design/logo",
+  },
+];
+
+export const styleData = [
+  {
+    key: "none",
+    text: "style.none",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/fotorWeb/rg0th3khguqn.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "photography",
+    text: "style.photography",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/5a61d47x6r1c.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "psychedelic",
+    text: "style.psychedelic",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/185w5i9s26er.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "digitalArt",
+    text: "style.digitalArt",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/rskwaasqq9se.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "artOils",
+    text: "style.artOils",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/tlzz7y7pjrws.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "tattoo",
+    text: "style.tattoo",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/h9cpi98sa41p.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "acrylicPainting",
+    text: "style.acrylicPainting",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/j2ubca96rmfs.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "chineseIllustration",
+    text: "style.chineseIllustration",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/k1tkfjdvevf1.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "chineseInkPainting",
+    text: "style.chineseInkPainting",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/cva58ri9o55i.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "coloredPencilDrawing",
+    text: "style.coloredPencilDrawing",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/i7rol6bmvxio.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "colorManga",
+    text: "style.colorManga",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/8osa2ndgux1h.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "neonpunk",
+    text: "style.neonpunk",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/yqhk8jzwnowa.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "teePrinting",
+    text: "style.teePrinting",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/ni49174se7yt.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "anime",
+    text: "style.anime",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/bij6jpquh9ug.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "cinematic",
+    text: "style.cinematic",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/uhgtz698jloy.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "icon",
+    text: "style.icon",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/13b0d1pplfpp.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "logo",
+    text: "style.logo",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/bs1c9fat0rn4.jpg@196w_196h_1l.src",
+  },
+  {
+    key: "pixelArt",
+    text: "style.pixelArt",
+    cover:
+      "https://pub-static.fotor.com/assets/aiImageConfig/template/teauo5you13o.jpg@196w_196h_1l.src",
   },
 ];
