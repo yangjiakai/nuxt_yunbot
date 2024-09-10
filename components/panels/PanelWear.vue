@@ -25,11 +25,13 @@ const removePrefix = (base64String: string) => {
 const baseImage = ref("");
 
 const handleBase64Update = (base64: string) => {
+  imageAiStore.setBaseImage("");
   baseImage.value = base64;
   imageAiStore.setBaseImage(base64);
 };
 
 const handleImageFileUpdate = (file: File) => {
+  imageAiStore.setBaseImageFile(null);
   imageAiStore.setBaseImageFile(file);
 };
 

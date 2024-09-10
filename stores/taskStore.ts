@@ -25,10 +25,10 @@ export const useTaskStore = defineStore("task", {
       this.isLoading = false;
     },
   },
-  persist: [
-    {
-      paths: [],
-      storage: persistedState.localStorage,
-    },
-  ],
+  // persist: [
+  //   {
+  //     paths: [],
+  //     storage: persistedState.localStorage,
+  //   },
+  // ],
 });

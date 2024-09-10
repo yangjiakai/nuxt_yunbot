@@ -1,11 +1,13 @@
 <!--
 * @Component: LanguageSwitcher.vue
 * @Maintainer: J.K. Yang
-* @Description: 
+* @Description: Language switcher component with automatic language detection
 -->
 <script setup lang="ts">
 import { useLocale } from "vuetify";
 import { Icon } from "@iconify/vue";
+
+
 const { current } = useLocale();
 const availableLocales = [
   {
@@ -33,25 +35,48 @@ const setLocale = (locale: string) => {
   localStorage.setItem("userLocale", locale);
 };
 
+const getBrowserLocale = (): string => {
+  const navigatorLocale =
+    navigator.languages?.[0] ||
+    navigator.language ||
+    (navigator as any).userLanguage ||
+    (navigator as any).browserLanguage ||
+    'en';
+
+  const languageCode = navigatorLocale.split('-')[0];
+  console.log("languageCode", languageCode);
+
+
+  // 检查是否支持该语言
+  const supportedLocale = availableLocales.find(locale => locale.code.toLowerCase() === languageCode.toLowerCase());
+
+  return supportedLocale ? supportedLocale.code : 'en'; // 如果不支持，默认返回英语
+};
+
 // 在组件挂载时检查并设置语言
 onMounted(() => {
   const savedLocale = localStorage.getItem("userLocale");
   if (savedLocale) {
     current.value = savedLocale;
+  } else {
+    // 如果没有保存的语言设置，使用浏览器语言
+    const browserLocale = getBrowserLocale();
+    setLocale(browserLocale);
   }
 });
 
 // 监听 current 的变化，保存到 localStorage
-watch(current, (newLocale) => {
+watch(current, (newLocale: any) => {
   localStorage.setItem("userLocale", newLocale);
 });
 </script>
+
 <template>
+  <!-- 模板部分保持不变 -->
   <v-menu>
     <template v-slot:activator="{ props }">
       <v-btn icon v-bind="props">
         <v-icon>mdi-translate</v-icon>
-        <!-- <Icon icon="vscode-icons:file-type-locale"></Icon> -->
       </v-btn>
     </template>
     <v-list nav>
