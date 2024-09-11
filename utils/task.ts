@@ -5,6 +5,7 @@ const imageAiStore = useImageAiStore();
 const config = useRuntimeConfig();
 interface TaskParams {
   type: string;
+  user: string;
   client_id: string;
   prompt: Record<string, any>;
 }

@@ -97,6 +97,9 @@ export default {
     delete: "削除",
     deleteAll: "全削除",
     share: "共有",
+    addSelection: "選択範囲追加",
+    removeSelection: "選択範囲削除",
+    resetSelection: "選択範囲リセット",
   },
   label: {
     ratio: "比率",

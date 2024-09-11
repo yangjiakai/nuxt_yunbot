@@ -39,8 +39,10 @@ const aspectRatio = ref("1:1");
 
 const handleCreate = () => {
   createTask({
-    type: "FLUX1-nf4-schnell-txt2img",
+    type: "FLUX1-nf4-dev-txt2img",
+    // type: "FLUX1-nf4-schnell-txt2img",
     client_id: "32324324224",
+    user: "ymwm",
     prompt: {
       seed: generateRandomSeed(),
       batch_size: batchSize.value,

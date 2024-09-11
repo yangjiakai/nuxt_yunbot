@@ -43,6 +43,7 @@ const handleRefImgUpdate = (base64: string) => {
 const handleCreate = () => {
   createTask({
     type: "cat_vton",
+    user: "ymwm",
     client_id: "32324324224",
     prompt: {
       model_img: removePrefix(imageAiStore.baseImage),
