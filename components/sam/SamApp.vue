@@ -50,7 +50,8 @@ Konva.pixelRatio = 1;
 ------------------------------- */
 const API_ENDPOINT =
   // "https://model-zoo.metademolab.com/predictions/segment_everything_box_model";
-  "http://36.213.4.210:18201/imgtoembedding";
+  "https://api.yunrobot.cn/embedding/imgtoembedding";
+
 
 const positiveClickColor = "turquoise";
 const negativeClickColor = "pink";
@@ -880,8 +881,8 @@ onMounted(() => {
                     :x="(click.x * canvasScale) / modelScale.scale" :y="(click.y * canvasScale) / modelScale.scale"
                     :fill="handleClickColor(click.clickType)" :radius="(5 * canvasScale) / modelScale.scale"
                     :shadowBlur="5" :shadowColor="handleClickColor(click.clickType) === positiveClickColor
-                        ? 'black'
-                        : handleClickColor(click.clickType)
+                      ? 'black'
+                      : handleClickColor(click.clickType)
                       " :preventDefault="false" />
                 </template>
               </v-layer>
